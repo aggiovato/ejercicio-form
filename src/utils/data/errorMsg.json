@@ -1,0 +1,237 @@
+{
+  "es": {
+    "username": {
+      "required": "Este campo es obligatorio.",
+      "min": "Debe tener más de 3 carácteres."
+    },
+    "country": {
+      "required": "Este campo es obligatorio.",
+      "min": "Debe tener más de 3 carácteres.",
+      "max": "Debe tener un máximo de 25 carácteres."
+    },
+    "email": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Este no es un correo válido."
+    },
+    "url": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Esta no es una URL válida."
+    },
+    "date": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Esta no es una fecha válida."
+    },
+    "time": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Esta no es una hora válida."
+    },
+    "datetime": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Estas no son una hora y una fecha válidas."
+    },
+    "range": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "El rango debe ir desde -10 hasta 10."
+    },
+    "age": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "La edad mínima es de 18 años."
+    },
+    "phone": {
+      "required": "Este campo es obligatorio.",
+      "invalid": "Este no es un número de teléfono válido."
+    },
+    "profession": {
+      "required": "Este campo es obligatorio.",
+      "max": "No puede superar los 20 carácteres."
+    }
+  },
+  "en": {
+    "username": {
+      "required": "This field is required.",
+      "min": "Must be more than 3 characters."
+    },
+    "country": {
+      "required": "This field is required.",
+      "min": "Must be more than 3 characters.",
+      "max": "Must be a maximum of 25 characters."
+    },
+    "email": {
+      "required": "This field is required.",
+      "invalid": "This is not a valid email."
+    },
+    "url": {
+      "required": "This field is required.",
+      "invalid": "This is not a valid URL."
+    },
+    "date": {
+      "required": "This field is required.",
+      "invalid": "This is not a valid date."
+    },
+    "time": {
+      "required": "This field is required.",
+      "invalid": "This is not a valid time."
+    },
+    "datetime": {
+      "required": "This field is required.",
+      "invalid": "These are not valid date and time."
+    },
+    "range": {
+      "required": "This field is required.",
+      "invalid": "The range must be from -10 to 10."
+    },
+    "age": {
+      "required": "This field is required.",
+      "invalid": "The minimum age is 18."
+    },
+    "phone": {
+      "required": "This field is required.",
+      "invalid": "This is not a valid phone number."
+    },
+    "profession": {
+      "required": "This field is required.",
+      "max": "Cannot exceed 20 characters."
+    }
+  },
+  "it": {
+    "username": {
+      "required": "Questo campo è obbligatorio.",
+      "min": "Deve avere più di 3 caratteri."
+    },
+    "country": {
+      "required": "Questo campo è obbligatorio.",
+      "min": "Deve avere più di 3 caratteri.",
+      "max": "Deve avere al massimo 25 caratteri."
+    },
+    "email": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questa non è un'email valida."
+    },
+    "url": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questo non è un URL valido."
+    },
+    "date": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questa non è una data valida."
+    },
+    "time": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questa non è un'ora valida."
+    },
+    "datetime": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questi non sono una data e un'ora validi."
+    },
+    "range": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "L'intervallo deve essere da -10 a 10."
+    },
+    "age": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "L'età minima è di 18 anni."
+    },
+    "phone": {
+      "required": "Questo campo è obbligatorio.",
+      "invalid": "Questo non è un numero di telefono valido."
+    },
+    "profession": {
+      "required": "Questo campo è obbligatorio.",
+      "max": "Non può superare i 20 caratteri."
+    }
+  },
+  "fr": {
+    "username": {
+      "required": "Ce champ est obligatoire.",
+      "min": "Doit avoir plus de 3 caractères."
+    },
+    "country": {
+      "required": "Ce champ est obligatoire.",
+      "min": "Doit avoir plus de 3 caractères.",
+      "max": "Doit avoir un maximum de 25 caractères."
+    },
+    "email": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ceci n'est pas un e-mail valide."
+    },
+    "url": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ceci n'est pas une URL valide."
+    },
+    "date": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ceci n'est pas une date valide."
+    },
+    "time": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ceci n'est pas une heure valide."
+    },
+    "datetime": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ce ne sont pas des date et heure valides."
+    },
+    "range": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "L'intervalle doit être compris entre -10 et 10."
+    },
+    "age": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "L'âge minimum est de 18 ans."
+    },
+    "phone": {
+      "required": "Ce champ est obligatoire.",
+      "invalid": "Ceci n'est pas un numéro de téléphone valide."
+    },
+    "profession": {
+      "required": "Ce champ est obligatoire.",
+      "max": "Ne peut pas dépasser 20 caractères."
+    }
+  },
+  "ca": {
+    "username": {
+      "required": "Aquest camp és obligatori.",
+      "min": "Ha de tenir més de 3 caràcters."
+    },
+    "country": {
+      "required": "Aquest camp és obligatori.",
+      "min": "Ha de tenir més de 3 caràcters.",
+      "max": "Ha de tenir un màxim de 25 caràcters."
+    },
+    "email": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquest no és un correu vàlid."
+    },
+    "url": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquesta no és una URL vàlida."
+    },
+    "date": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquesta no és una data vàlida."
+    },
+    "time": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquesta no és una hora vàlida."
+    },
+    "datetime": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquests no són una data i una hora vàlides."
+    },
+    "range": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "El rang ha de ser de -10 a 10."
+    },
+    "age": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "L'edat mínima és de 18 anys."
+    },
+    "phone": {
+      "required": "Aquest camp és obligatori.",
+      "invalid": "Aquest no és un número de telèfon vàlid."
+    },
+    "profession": {
+      "required": "Aquest camp és obligatori.",
+      "max": "No pot superar els 20 caràcters."
+    }
+  }
+}
