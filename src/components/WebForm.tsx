@@ -18,10 +18,15 @@ const WebForm = () => {
   });
 
   return (
-    <Container maxW="container.md" m="auto" p={15}>
+    <Container maxW="container.md" p={5} justifyContent={"center"}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
-          <SimpleGrid columns={[1, 2]} spacing={12} minChildWidth={420}>
+          <SimpleGrid
+            columns={[1, 2]}
+            spacing={1}
+            minChildWidth={300}
+            justifyContent={"center"}
+          >
             <Input
               name="username"
               placeholder="Nombre"
@@ -72,7 +77,6 @@ const WebForm = () => {
               direction="column"
               alignItems={"center"}
               justifyContent="center"
-              gap={20}
             >
               <Flex>
                 <Input name="date" type="date" />

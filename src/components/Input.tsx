@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { InputProps } from "../utils/schemas/schemas";
 // import { useEffect, useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 const Input = ({
   name,
@@ -21,8 +21,8 @@ const Input = ({
   // useEffect(() => (error ? setMb(0) : setMb(3)), [error]);
 
   return (
-    <Box h={60} mx={20}>
-      <div className={`mb-3 mt-2`}>
+    <Flex h={20} maxW={800} justifyContent={"center"}>
+      <div className="form-control" style={{ border: "0px" }}>
         {hasLabel && (
           <label htmlFor={name} className="form-label">
             {children || (
@@ -73,7 +73,7 @@ const Input = ({
           </div>
         )}
       </div>
-    </Box>
+    </Flex>
   );
 };
 
