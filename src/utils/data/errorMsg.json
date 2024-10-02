@@ -7,7 +7,8 @@
     "country": {
       "required": "Este campo es obligatorio.",
       "min": "Debe tener más de 3 carácteres.",
-      "max": "Debe tener un máximo de 25 carácteres."
+      "max": "Debe tener un máximo de 25 carácteres.",
+      "invalid": "Este no es un país válido"
     },
     "email": {
       "required": "Este campo es obligatorio.",

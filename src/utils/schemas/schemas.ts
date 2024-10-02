@@ -7,9 +7,24 @@
 import { z } from "zod";
 import { ReactNode } from "react";
 import errorMsg from "../data/errorMsg.json";
+import country_en from "../data/country_en.json";
 
 const lang: LangType = "es";
 const errors = errorMsg[lang];
+
+const country_name = country_en.map((c) => c.name);
+export const country_prefix = country_en.map((c) => {
+  return {
+    country: c.name,
+    phone: c.dial_code,
+  };
+});
+
+//const date_regex = /^([0-2][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
+//const time_regex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
+//const datetime_regex =
+//  /^([0-2][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
+const phone_regex = /^\+[0-9]{1,15}$/;
 
 export const formSchema = z.object({
   username: z
@@ -30,6 +45,9 @@ export const formSchema = z.object({
     })
     .max(25, {
       message: errors.country.max,
+    })
+    .refine((val) => country_name.includes(val), {
+      message: errors.country.invalid,
     }),
   email: z
     .string()
@@ -39,20 +57,35 @@ export const formSchema = z.object({
     .email({
       message: errors.email.invalid,
     }),
+  phone: z
+    .string()
+    .min(1, {
+      message: errors.phone.required,
+    })
+    .regex(phone_regex, {
+      message: errors.phone.invalid,
+    }),
+  age: z.coerce
+    .number({
+      required_error: errors.age.required,
+    })
+    .min(18, {
+      message: errors.age.invalid,
+    }),
   url: z
     .string()
     .min(1, {
       message: errors.url.required,
     })
     .url({ message: errors.url.invalid }),
-  date: z.date({
-    required_error: errors.date.required,
-  }),
-  time: z
-    .string({
-      required_error: errors.time.required,
+  profession: z
+    .string()
+    .min(1, {
+      message: errors.profession.required,
     })
-    .time(),
+    .max(20, {
+      message: errors.profession.max,
+    }),
 });
 
 /**
@@ -75,5 +108,8 @@ export type InputProps = {
   type?: string;
   placeholder?: string;
   hasLabel?: boolean;
+  min?: number;
+  max?: number;
   children?: ReactNode;
+  ariaDescribedBy?: ReactNode;
 };
