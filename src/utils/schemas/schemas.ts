@@ -20,10 +20,6 @@ export const country_prefix = country_en.map((c) => {
   };
 });
 
-//const date_regex = /^([0-2][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
-//const time_regex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
-//const datetime_regex =
-//  /^([0-2][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
 const phone_regex = /^\+[0-9]{1,15}$/;
 
 export const formSchema = z.object({
@@ -65,13 +61,9 @@ export const formSchema = z.object({
     .regex(phone_regex, {
       message: errors.phone.invalid,
     }),
-  age: z.coerce
-    .number({
-      required_error: errors.age.required,
-    })
-    .min(18, {
-      message: errors.age.invalid,
-    }),
+  age: z.coerce.number().min(18, {
+    message: errors.age.invalid,
+  }),
   url: z
     .string()
     .min(1, {
@@ -112,4 +104,19 @@ export type InputProps = {
   max?: number;
   children?: ReactNode;
   ariaDescribedBy?: ReactNode;
+};
+
+export type InputRangeProps = InputProps & {
+  defaultValue?: number;
+  isStarable?: boolean;
+};
+
+export type InfoCardProps = {
+  key?: number;
+  username?: string;
+  url?: string;
+  email?: string;
+  phone?: string;
+  country?: string;
+  onDelete?: () => void;
 };

@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { InputProps } from "../utils/schemas/schemas";
-// import { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
+import "../styles/Input.css";
 
 const Input = ({
   name,
@@ -15,10 +15,6 @@ const Input = ({
 }: InputProps) => {
   const { register, formState, getFieldState } = useFormContext();
   const { error } = getFieldState(name, formState);
-
-  // const [mb, setMb] = useState(4);
-
-  // useEffect(() => (error ? setMb(0) : setMb(3)), [error]);
 
   return (
     <Flex h={20} maxW={800} justifyContent={"center"}>
@@ -66,7 +62,7 @@ const Input = ({
         {error?.message && (
           <div>
             <small
-              style={{ fontSize: "12px", marginTop: "0px", color: "#7C93C3" }}
+              style={{ fontSize: "12px", marginTop: "0px", color: "#A594F9" }}
             >
               <i>* {error?.message}</i>
             </small>

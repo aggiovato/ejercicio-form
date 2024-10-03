@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://example.com",
+    "username": "Juan Pérez",
+    "email": "juan.perez@example.com",
+    "phone": "+52 123 456 7890",
+    "country": "Mexico"
+  },
+  {
+    "url": "https://second-example.com",
+    "username": "Maria García",
+    "email": "maria.garcia@example.com",
+    "phone": "+52 123 456 7890",
+    "country": "España"
+  }
+]

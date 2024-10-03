@@ -1,0 +1,37 @@
+{
+  "es": {
+    "username": {
+      "msg": "Debe introducir su nombre y apellido."
+    },
+    "country": {
+      "msg": "Debe introducir su país con letra inicial mayúscula."
+    },
+    "email": {
+      "msg": "Para ser un correo válido"
+    },
+    "url": {
+      "msg": "Este campo es obligatorio."
+    },
+    "date": {
+      "msg": "Este campo es obligatorio."
+    },
+    "time": {
+      "msg": "Este campo es obligatorio."
+    },
+    "datetime": {
+      "msg": "Este campo es obligatorio."
+    },
+    "range": {
+      "msg": "Este campo es obligatorio."
+    },
+    "age": {
+      "msg": "Este campo es obligatorio."
+    },
+    "phone": {
+      "msg": "Este campo es obligatorio."
+    },
+    "profession": {
+      "msg": "Este campo es obligatorio."
+    }
+  }
+}
