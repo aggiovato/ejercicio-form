@@ -1,6 +1,6 @@
 import { Box, IconButton, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importar iconos de flecha
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const ExpandableFooter = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,7 +33,6 @@ const ExpandableFooter = () => {
           color={isExpanded ? "##393163" : "#A594F9"}
         />
 
-        {/* Información visible solo cuando está expandido */}
         {isExpanded && (
           <>
             <Text fontSize="md" color={"#393163"} m={3}>

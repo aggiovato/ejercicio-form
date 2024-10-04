@@ -7,11 +7,17 @@ const Input = ({
   name,
   type = "text",
   placeholder = "",
+  value,
   hasLabel = false,
   min = -100,
   max = 100,
   children,
   ariaDescribedBy,
+  onMouseEnter,
+  onMouseLeave,
+  onInput,
+  onChange,
+  onFocus,
 }: InputProps) => {
   const { register, formState, getFieldState } = useFormContext();
   const { error } = getFieldState(name, formState);
@@ -43,6 +49,8 @@ const Input = ({
                 backgroundColor: "#A594F9",
                 color: "#FFFFFF",
               }}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
             >
               {ariaDescribedBy}
             </span>
@@ -53,6 +61,7 @@ const Input = ({
               type={type}
               id={name}
               placeholder={placeholder}
+              value={value}
               min={min}
               max={max}
               className={`${styles.inputFocus} form-control`}
@@ -62,6 +71,9 @@ const Input = ({
                 height: "40px",
                 borderColor: "#CDC1FF",
               }}
+              onInput={onInput}
+              onChange={onChange}
+              onFocus={onFocus}
             />
           ) : (
             <input
@@ -69,12 +81,16 @@ const Input = ({
               type={type}
               id={name}
               placeholder={placeholder}
+              value={value}
               className={`${styles.inputFocus}`}
               aria-describedby="aria-describer"
               style={{
                 height: "40px",
                 borderColor: "#CDC1FF",
               }}
+              onInput={onInput}
+              onChange={onChange}
+              onFocus={onFocus}
             />
           )}
         </div>

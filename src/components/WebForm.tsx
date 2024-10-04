@@ -25,7 +25,8 @@ import {
   faPaperPlane,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { country_prefix } from "../utils/schemas/schemas";
 
 const WebForm = () => {
   const methods = useForm<WebFormType>({
@@ -33,7 +34,8 @@ const WebForm = () => {
   });
 
   const toast = useToast();
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState([false, ""]);
+  const [prefixValue, setPrefixValue] = useState("");
 
   const onSubmit = (data: WebFormType) => {
     const existingData = JSON.parse(
@@ -55,6 +57,28 @@ const WebForm = () => {
     window.dispatchEvent(event);
   };
 
+  const handleCountryInput = (e: FormEvent<HTMLInputElement>) => {
+    const country = e.currentTarget.value;
+    const phone = country_prefix.find((c) => c.country === country);
+    const prefix = phone ? phone.phone : "";
+    setPrefixValue(prefix);
+  };
+
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const phone = e.target.value;
+    if (!phone.startsWith(prefixValue)) {
+      setPrefixValue(prefixValue);
+    } else {
+      setPrefixValue(phone);
+    }
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    const prefix_length = prefixValue.length;
+    input.setSelectionRange(prefix_length, prefix_length);
+  };
+
   return (
     <Container maxW="container.md" p={4} justifyContent={"center"}>
       <FormProvider {...methods}>
@@ -68,24 +92,64 @@ const WebForm = () => {
             <Input
               name="username"
               placeholder="Nombre"
-              ariaDescribedBy={<FontAwesomeIcon icon={faUser} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faUser}
+                  shake={
+                    isHovered[0] && isHovered[1] === "username" ? true : false
+                  }
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "username"])}
+              onMouseLeave={() => setIsHovered([false, "username"])}
             />
             <Input
               name="country"
               placeholder="País"
-              ariaDescribedBy={<FontAwesomeIcon icon={faEarthEurope} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faEarthEurope}
+                  shake={
+                    isHovered[0] && isHovered[1] === "country" ? true : false
+                  }
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "country"])}
+              onMouseLeave={() => setIsHovered([false, "country"])}
+              onInput={handleCountryInput}
             />
             <Input
               name="email"
               type="email"
               placeholder="Correo"
-              ariaDescribedBy={<FontAwesomeIcon icon={faAt} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faAt}
+                  shake={
+                    isHovered[0] && isHovered[1] === "email" ? true : false
+                  }
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "email"])}
+              onMouseLeave={() => setIsHovered([false, "email"])}
             />
             <Input
               name="phone"
               type="tell"
               placeholder="Número de teléfono"
-              ariaDescribedBy={<FontAwesomeIcon icon={faPhone} />}
+              value={prefixValue}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faPhone}
+                  shake={
+                    isHovered[0] && isHovered[1] === "phone" ? true : false
+                  }
+                />
+              }
+              onChange={handlePhoneInput}
+              onFocus={handleFocus}
+              onMouseEnter={() => setIsHovered([true, "phone"])}
+              onMouseLeave={() => setIsHovered([false, "phone"])}
             />
             <Flex justifyContent={"space-evenly"}>
               <Input
@@ -94,25 +158,59 @@ const WebForm = () => {
                 placeholder="Edad"
                 min={18}
                 max={100}
-                ariaDescribedBy={<FontAwesomeIcon icon={faCalendar} />}
+                ariaDescribedBy={
+                  <FontAwesomeIcon
+                    icon={faCalendar}
+                    shake={
+                      isHovered[0] && isHovered[1] === "age" ? true : false
+                    }
+                  />
+                }
+                onMouseEnter={() => setIsHovered([true, "age"])}
+                onMouseLeave={() => setIsHovered([false, "age"])}
               />
             </Flex>
             <Input
               name="url"
               type="url"
               placeholder="Escribe la URL de tu página web..."
-              ariaDescribedBy={<FontAwesomeIcon icon={faLink} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faLink}
+                  shake={isHovered[0] && isHovered[1] === "url" ? true : false}
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "url"])}
+              onMouseLeave={() => setIsHovered([false, "url"])}
             />
             <Input
               name="profession"
               placeholder="Profesión"
-              ariaDescribedBy={<FontAwesomeIcon icon={faBriefcaseClock} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faBriefcaseClock}
+                  shake={
+                    isHovered[0] && isHovered[1] === "profession" ? true : false
+                  }
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "profession"])}
+              onMouseLeave={() => setIsHovered([false, "profession"])}
             />
             <Input
               name="search"
               type="search"
               placeholder="Busca una web registrada..."
-              ariaDescribedBy={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+              ariaDescribedBy={
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  shake={
+                    isHovered[0] && isHovered[1] === "search" ? true : false
+                  }
+                />
+              }
+              onMouseEnter={() => setIsHovered([true, "search"])}
+              onMouseLeave={() => setIsHovered([false, "search"])}
             />
             <Flex
               direction="column"
@@ -138,20 +236,32 @@ const WebForm = () => {
                 type="submit"
                 colorScheme="blue"
                 mt={5}
-                rightIcon={<FontAwesomeIcon icon={faPaperPlane} />}
+                rightIcon={
+                  <FontAwesomeIcon
+                    icon={faPaperPlane}
+                    bounce={
+                      isHovered[0] && isHovered[1] === "submit" ? true : false
+                    }
+                  />
+                }
                 bgColor="#A594F9"
                 _hover={{ bgColor: "#F5EFFF", color: "#A594F9" }}
+                onMouseEnter={() => setIsHovered([true, "submit"])}
+                onMouseLeave={() => setIsHovered([false, "submit"])}
               >
                 Enviar
               </Button>
 
               <Button
                 colorScheme={"purple"}
+                id="clean"
                 mt={5}
                 rightIcon={
                   <FontAwesomeIcon
                     icon={faTrash}
-                    bounce={isHovered ? true : false}
+                    bounce={
+                      isHovered[0] && isHovered[1] === "clean" ? true : false
+                    }
                   />
                 }
                 bgColor={"#F5EFFF"}
@@ -160,8 +270,8 @@ const WebForm = () => {
                   bgColor: "#A594F9",
                   color: "#F5EFFF",
                 }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setIsHovered([true, "clean"])}
+                onMouseLeave={() => setIsHovered([false, "clean"])}
                 onClick={() => methods.reset()}
               >
                 Limpiar

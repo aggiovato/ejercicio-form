@@ -55,8 +55,6 @@ const SideBar = () => {
     if (window.confirm("¿Seguro que quieres eliminar este elemento?")) {
       const updatedCards = cards.filter((_, i) => i !== index);
 
-      // localStorage.setItem("registeredWebs", JSON.stringify(updatedCards));
-
       const storedWebs: WebFormType[] = JSON.parse(
         localStorage.getItem("registeredWebs") || "[]"
       );
@@ -96,7 +94,6 @@ const SideBar = () => {
             color="#F5EFFF"
             opacity={0.5}
           />
-
           <Skeleton
             height="150px"
             width="100%"

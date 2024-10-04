@@ -5,7 +5,7 @@
  */
 
 import { z } from "zod";
-import { ReactNode } from "react";
+import { FormEvent, ReactNode } from "react";
 import errorMsg from "../data/errorMsg.json";
 import country_en from "../data/country_en.json";
 
@@ -78,6 +78,11 @@ export const formSchema = z.object({
     .max(20, {
       message: errors.profession.max,
     }),
+  search: z.string(),
+  date: z.string(),
+  time: z.string(),
+  datetime: z.string(),
+  range: z.coerce.number(),
 });
 
 /**
@@ -99,11 +104,17 @@ export type InputProps = {
   name: string;
   type?: string;
   placeholder?: string;
+  value?: string;
   hasLabel?: boolean;
   min?: number;
   max?: number;
   children?: ReactNode;
   ariaDescribedBy?: ReactNode;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onInput?: (e: FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 };
 
 export type InputRangeProps = InputProps & {
