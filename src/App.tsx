@@ -8,7 +8,7 @@ const App = () => {
     <Grid
       templateAreas={`"header header"
                     "nav main"`}
-      gridTemplateRows={"60px 1fr"}
+      gridTemplateRows={"40px 1fr"}
       gridTemplateColumns={{ sm: `0 1fr`, md: `380px 1fr` }}
     >
       <GridItem pl="2" area={"header"}>
@@ -22,7 +22,7 @@ const App = () => {
       >
         <SideBar />
       </GridItem>
-      <GridItem pl="2" area={"main"}>
+      <GridItem area={"main"}>
         <MainContent />
       </GridItem>
     </Grid>

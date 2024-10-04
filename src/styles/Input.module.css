@@ -1,0 +1,12 @@
+.inputFocus:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(165, 148, 249, 0.5);
+  border-color: #a594f9;
+}
+
+.inputFocus::placeholder {
+  font-style: italic;
+  color: #483c7f;
+  opacity: 0.7;
+  font-size: 14px;
+}

@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+//import styles from "../styles/InputRange.moule.css";
 
 const InputRange = ({
   name,
@@ -105,7 +106,7 @@ const InputRange = ({
                 {...custom_props}
                 aria-label={placeholder}
                 onInput={handleInput}
-                className="px-1"
+                className={`px-1`}
               />
               <div className="mt-1 pt-1">{renderStars()}</div>
             </VStack>

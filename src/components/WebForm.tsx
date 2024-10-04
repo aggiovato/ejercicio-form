@@ -9,6 +9,7 @@ import {
   Flex,
   SimpleGrid,
   Spacer,
+  useToast,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
@@ -24,33 +25,35 @@ import {
   faPaperPlane,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const WebForm = () => {
   const methods = useForm<WebFormType>({
     resolver: zodResolver(formSchema),
   });
 
+  const toast = useToast();
+  const [isHovered, setIsHovered] = useState(false);
+
   const onSubmit = (data: WebFormType) => {
     const existingData = JSON.parse(
       localStorage.getItem("registeredWebs") || "[]"
     );
+
     const updatedData = [...existingData, data];
     localStorage.setItem("registeredWebs", JSON.stringify(updatedData));
-    console.log("Datos guardados en localStorage:", updatedData);
     methods.reset();
-  };
 
-  useEffect(() => {
-    fetch("../utils/data/registeredWeb.json")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Datos cargados desde el archivo JSON:", data);
-      })
-      .catch((error) => {
-        console.error("Error al cargar el archivo JSON:", error);
-      });
-  }, []);
+    toast({
+      title: "Sitio web agregado!",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+
+    const event = new Event("updateSidebar");
+    window.dispatchEvent(event);
+  };
 
   return (
     <Container maxW="container.md" p={4} justifyContent={"center"}>
@@ -84,8 +87,7 @@ const WebForm = () => {
               placeholder="Número de teléfono"
               ariaDescribedBy={<FontAwesomeIcon icon={faPhone} />}
             />
-            <Flex>
-              <Spacer />
+            <Flex justifyContent={"space-evenly"}>
               <Input
                 name="age"
                 type="number"
@@ -94,7 +96,6 @@ const WebForm = () => {
                 max={100}
                 ariaDescribedBy={<FontAwesomeIcon icon={faCalendar} />}
               />
-              <Spacer />
             </Flex>
             <Input
               name="url"
@@ -138,7 +139,8 @@ const WebForm = () => {
                 colorScheme="blue"
                 mt={5}
                 rightIcon={<FontAwesomeIcon icon={faPaperPlane} />}
-                style={{ backgroundColor: "#A594F9" }}
+                bgColor="#A594F9"
+                _hover={{ bgColor: "#F5EFFF", color: "#A594F9" }}
               >
                 Enviar
               </Button>
@@ -146,8 +148,20 @@ const WebForm = () => {
               <Button
                 colorScheme={"purple"}
                 mt={5}
-                rightIcon={<FontAwesomeIcon icon={faTrash} />}
-                style={{ backgroundColor: "#F5EFFF", color: "#A594F9" }}
+                rightIcon={
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    bounce={isHovered ? true : false}
+                  />
+                }
+                bgColor={"#F5EFFF"}
+                color={"#A594F9"}
+                _hover={{
+                  bgColor: "#A594F9",
+                  color: "#F5EFFF",
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
                 onClick={() => methods.reset()}
               >
                 Limpiar

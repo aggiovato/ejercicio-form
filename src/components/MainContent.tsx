@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import WebForm from "./WebForm";
 import Hero from "./Hero";
 
@@ -6,15 +6,18 @@ const MainContent = () => {
   return (
     <Grid
       templateAreas={`"hero"
-    "body"`}
-      gridTemplateRows={{ sm: `150px 1fr`, md: `80px 1fr` }}
+    "body"
+    "footer`}
+      gridTemplateRows={{ sm: `130px 1fr`, md: `100px 1fr` }}
     >
-      <GridItem pl={2} area={"hero"}>
-        <Hero />
-      </GridItem>
-      <GridItem pl={2} mt={5} area={"body"}>
-        <WebForm />
-      </GridItem>
+      <Flex flexDirection={"column"}>
+        <GridItem m={0} area={"hero"} mb={3}>
+          <Hero />
+        </GridItem>
+        <GridItem mt={0} area={"body"}>
+          <WebForm />
+        </GridItem>
+      </Flex>
     </Grid>
   );
 };

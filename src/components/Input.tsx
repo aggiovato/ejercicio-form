@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { InputProps } from "../utils/schemas/schemas";
 import { Flex } from "@chakra-ui/react";
-import "../styles/Input.css";
+import styles from "../styles/Input.module.css";
 
 const Input = ({
   name,
@@ -17,7 +17,7 @@ const Input = ({
   const { error } = getFieldState(name, formState);
 
   return (
-    <Flex h={20} maxW={800} justifyContent={"center"}>
+    <Flex h={"70px"} maxW={800} justifyContent={"center"}>
       <div className="form-control" style={{ border: "0px" }}>
         {hasLabel && (
           <label htmlFor={name} className="form-label">
@@ -31,7 +31,19 @@ const Input = ({
 
         <div className="input-group flex-nowrap">
           {ariaDescribedBy && (
-            <span className="input-group-text" id="aria-describer">
+            <span
+              className="input-group-text"
+              id="aria-describer"
+              style={{
+                width: "45px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#A594F9",
+                color: "#FFFFFF",
+              }}
+            >
               {ariaDescribedBy}
             </span>
           )}
@@ -43,9 +55,13 @@ const Input = ({
               placeholder={placeholder}
               min={min}
               max={max}
-              className="form-control"
+              className={`${styles.inputFocus} form-control`}
               aria-describedby="aria-describer"
               aria-label={placeholder}
+              style={{
+                height: "40px",
+                borderColor: "#CDC1FF",
+              }}
             />
           ) : (
             <input
@@ -53,8 +69,12 @@ const Input = ({
               type={type}
               id={name}
               placeholder={placeholder}
-              className="form-control"
+              className={`${styles.inputFocus}`}
               aria-describedby="aria-describer"
+              style={{
+                height: "40px",
+                borderColor: "#CDC1FF",
+              }}
             />
           )}
         </div>
@@ -62,7 +82,7 @@ const Input = ({
         {error?.message && (
           <div>
             <small
-              style={{ fontSize: "12px", marginTop: "0px", color: "#A594F9" }}
+              style={{ fontSize: "12px", marginTop: "0px", color: "#b22606" }}
             >
               <i>* {error?.message}</i>
             </small>

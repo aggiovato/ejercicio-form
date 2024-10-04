@@ -5,10 +5,17 @@ import {
   CardHeader,
   Heading,
   IconButton,
+  Link,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { InfoCardProps } from "../utils/schemas/schemas";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const InfoCard = ({
   username = "Aggiovato",
@@ -29,8 +36,10 @@ const InfoCard = ({
   };
 
   const footerStyle = {
-    backgroundColor: "#E5D9F2",
+    backgroundColor: "#CDC1FF",
     color: "#27374D",
+    borderRadius: "0px 0px 10px 10px",
+    fontSize: "px",
   };
 
   const buttonStyle = {
@@ -38,6 +47,8 @@ const InfoCard = ({
     top: "10px",
     right: "10px",
   };
+
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Card
@@ -49,34 +60,76 @@ const InfoCard = ({
     >
       <IconButton
         aria-label="Eliminar card"
-        icon={<CloseIcon />}
+        icon={
+          <FontAwesomeIcon icon={faXmark} bounce={isHovered ? true : false} />
+        }
         size={"sm"}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         onClick={onDelete}
         position={"absolute"}
+        fontSize={"md"}
         style={buttonStyle}
       />
 
       <CardHeader>
-        <Heading size="sm" style={headerStyle}>
-          {url}
+        <Heading size="sm" style={headerStyle} m={0} p={0}>
+          <Link
+            href={url}
+            isExternal
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {url} <ExternalLinkIcon mx="2px" />
+          </Link>
         </Heading>
       </CardHeader>
       <CardBody>
-        <Text fontSize="sm" m={0}>
+        <Text fontSize="sm" m={0} textColor={"#393161"}>
           <strong>Correo:</strong> {email}
         </Text>
-        <Text fontSize="sm" m={0}>
+        <Text fontSize="sm" m={0} textColor={"#393161"}>
           <strong>País:</strong> {country}
         </Text>
-        <Text fontSize="sm" m={0}>
+        <Text fontSize="sm" m={0} textColor={"#393161"}>
           <strong>Teléfono:</strong> {phone}
         </Text>
       </CardBody>
-      <Box as="footer" p={1} textAlign="center" style={footerStyle}>
-        <Text fontSize="sm" pt={3}>
+      <Box as="footer" textAlign="center" style={footerStyle}>
+        <Text
+          fontSize="15px"
+          pt={4}
+          textColor={"#393161"}
+          fontWeight={"bold"}
+          fontStyle={"italic"}
+        >
           Creado por {username}
         </Text>
       </Box>
+
+      {isHovered && (
+        <Popover isOpen={isHovered} placement="right">
+          <PopoverTrigger>
+            <Box />
+          </PopoverTrigger>
+          <PopoverContent
+            width="300px"
+            height="270px"
+            p={0}
+            borderRadius={"10px"}
+            bgColor={"#CDC1FF"}
+            alignItems={"center"}
+          >
+            <iframe
+              src={url}
+              title="preview"
+              width="100%"
+              height="100%"
+              style={{ borderRadius: "10px", border: "none" }}
+            />
+          </PopoverContent>
+        </Popover>
+      )}
     </Card>
   );
 };
