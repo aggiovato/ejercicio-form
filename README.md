@@ -1,4 +1,4 @@
-![Logo de la aplicación](./assets/logo_ej_1.svg)
+![Logo de la aplicación](./src/assets/logo_ej_1.svg)
 
 # Ejercicio 1: Formulario - WebRep
 
