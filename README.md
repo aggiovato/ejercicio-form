@@ -157,7 +157,7 @@ src/
 │ ├── schemas/                  # Esquemas de validación (Zod)
 │ │ └── schemas.ts
 │ └── theme/                    # Temas personalizados de Chakra UI
-│ │ └── theme.ts
+│   └── theme.ts
 ├── App.tsx                     # Componente raíz
 ├── main.tsx                    # Punto de entrada de la aplicación
 └── index.html                  # Archivo HTML principal
