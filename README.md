@@ -5,7 +5,9 @@
 Esta aplicación es un repositorio de sitios web para gestionar enlaces favoritos mediante un formulario validado con **Zod** y **TypeScript**, y estilizado con **Chakra UI**.
 
 Puedes acceder a la aplicación en el siguiente enlace:
-[css-styling-web](https://css-styling-web.netlify.app/)
+[form-webrep](https://form-webrep.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/01bc53e5-0358-4103-addb-c821fea5cf7a/deploy-status)](https://app.netlify.com/sites/form-webrep/deploys)
 
 ## Tabla de Contenidos
 
