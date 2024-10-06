@@ -40,7 +40,8 @@
     },
     "phone": {
       "required": "Este campo es obligatorio.",
-      "invalid": "Este no es un número de teléfono válido."
+      "invalid": "Este no es un número de teléfono válido.",
+      "wrong": "El número de teléfono debe comenzar por "
     },
     "profession": {
       "required": "Este campo es obligatorio.",

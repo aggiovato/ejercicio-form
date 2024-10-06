@@ -119,6 +119,7 @@ const InfoCard = ({
             borderRadius={"10px"}
             bgColor={"#CDC1FF"}
             alignItems={"center"}
+            zIndex={1000}
           >
             <iframe
               src={url}

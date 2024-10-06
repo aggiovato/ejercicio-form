@@ -121,7 +121,7 @@ const SideBar = () => {
         </VStack>
       )}
       {cards.length >= 3 && (
-        <Text mt={4} fontSize="sm">
+        <Text mt={6} ml={6} fontSize="sm" fontWeight={"bold"} color={"#F5EFFF"}>
           Hay más elementos en el listado...
         </Text>
       )}

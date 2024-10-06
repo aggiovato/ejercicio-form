@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { formSchema, WebFormType } from "../utils/schemas/schemas";
 import Input from "./Input";
 import {
+  Box,
   Button,
   ButtonGroup,
   Container,
@@ -10,6 +11,7 @@ import {
   SimpleGrid,
   Spacer,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
@@ -46,12 +48,30 @@ const WebForm = () => {
     localStorage.setItem("registeredWebs", JSON.stringify(updatedData));
     methods.reset();
 
-    toast({
-      title: "Sitio web agregado!",
-      status: "success",
-      duration: 2000,
-      isClosable: true,
-    });
+    setPrefixValue("");
+
+    const showToast = () => {
+      toast({
+        render: () => (
+          <Box
+            bg="#A594F9"
+            color="#F5EFFF"
+            p={1}
+            borderRadius="md"
+            boxShadow="md"
+          >
+            <Text fontWeight="bold" textAlign={"left"}>
+              Enviado
+            </Text>
+            <Text textAlign={"center"}>El formulario web ha sido enviado!</Text>
+          </Box>
+        ),
+        duration: 3000,
+        isClosable: true,
+      });
+    };
+
+    showToast();
 
     const event = new Event("updateSidebar");
     window.dispatchEvent(event);
@@ -66,11 +86,12 @@ const WebForm = () => {
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phone = e.target.value;
+    console.log(phone);
     if (!phone.startsWith(prefixValue)) {
       setPrefixValue(prefixValue);
-    } else {
-      setPrefixValue(phone);
     }
+
+    setPrefixValue(phone);
   };
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -216,8 +237,11 @@ const WebForm = () => {
               direction="column"
               alignItems={"center"}
               justifyContent="center"
+              maxWidth="600px" // Limita el ancho máximo del formulario para evitar que se expanda demasiado
+              mx="auto" // Centra el formulario en la pantalla
+              p={4} // Padding interno para darle espacio
             >
-              <Flex>
+              <Flex w="100%" justifyContent="space-between" mb={4}>
                 <Input name="date" type="date" />
                 <Input name="time" type="time" />
               </Flex>
@@ -272,7 +296,10 @@ const WebForm = () => {
                 }}
                 onMouseEnter={() => setIsHovered([true, "clean"])}
                 onMouseLeave={() => setIsHovered([false, "clean"])}
-                onClick={() => methods.reset()}
+                onClick={() => {
+                  methods.reset();
+                  setPrefixValue("");
+                }}
               >
                 Limpiar
               </Button>
