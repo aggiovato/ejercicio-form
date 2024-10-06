@@ -35,7 +35,7 @@ Esta aplicación fue creada como parte de un ejercicio práctico para implementa
 
 ## Ejemplo de Código
 
-A continuación, un ejemplo simplificado del esquema de validación con **Zod**:
+A continuación, el código de validación con **Zod**:
 
 ```ts
 import { z } from "zod";
