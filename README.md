@@ -40,11 +40,90 @@ A continuación, un ejemplo simplificado del esquema de validación con **Zod**:
 ```ts
 import { z } from "zod";
 
-const formSchema = z.object({
-  name: z.string().nonempty("El nombre es requerido"),
-  url: z.string().url("Debe ser una URL válida"),
-  date: z.string(),
-  time: z.string(),
+export const formSchema = z
+  .object({
+    username: z
+      .string()
+      .min(1, {
+        message: errors.username.required,
+      })
+      .min(3, {
+        message: errors.username.min,
+      }),
+    country: z
+      .string()
+      .min(1, {
+        message: errors.country.required,
+      })
+      .min(3, {
+        message: errors.country.min,
+      })
+      .max(25, {
+        message: errors.country.max,
+      })
+      .refine((val) => country_name.includes(val), {
+        message: errors.country.invalid,
+      }),
+    email: z
+      .string()
+      .min(1, {
+        message: errors.email.required,
+      })
+      .email({
+        message: errors.email.invalid,
+      }),
+    phone: z
+      .string()
+      .min(1, {
+        message: errors.phone.required,
+      })
+      .regex(phone_regex, {
+        message: errors.phone.invalid,
+      }),
+    age: z.coerce.number().min(18, {
+      message: errors.age.invalid,
+    }),
+    url: z
+      .string()
+      .min(1, {
+        message: errors.url.required,
+      })
+      .url({ message: errors.url.invalid }),
+    profession: z
+      .string()
+      .min(1, {
+        message: errors.profession.required,
+      })
+      .max(20, {
+        message: errors.profession.max,
+      }),
+    search: z.string(),
+    date: z.string(),
+    time: z.string(),
+    datetime: z.string(),
+    range: z.coerce.number(),
+  })
+  .superRefine((data, context) => {
+    const { country, phone } = data;
+    const country_data = country_prefix.find((c) => c.country === country);
+
+    if (!country_data) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["phone"],
+        message: `El país "${country}" no tiene un prefijo definido`,
+      });
+      return;
+    }
+
+    if (!phone.startsWith(country_data.phone)) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["phone"],
+        message: `${errors.phone.wrong} ${country_data.phone}`,
+      });
+    }
+  });
 });
 ```
 
