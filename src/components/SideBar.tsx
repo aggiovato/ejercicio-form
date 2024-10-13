@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSadCry } from "@fortawesome/free-solid-svg-icons";
 import { WebFormType, InfoCardProps } from "../utils/schemas/schemas";
 import ExpandableFooter from "./ExpandableFooter";
+import axios from "axios";
 
 const SideBar = () => {
   const [cards, setCards] = useState<InfoCardProps[]>([]);
@@ -13,41 +14,34 @@ const SideBar = () => {
   const registeredWebs: InfoCardProps[] = jsonWebs;
 
   useEffect(() => {
-    const storedWebs: WebFormType[] = JSON.parse(
-      localStorage.getItem("registeredWebs") || "[]"
-    );
-    if (storedWebs.length > 0) {
-      setCards(
-        storedWebs.slice(0, 3).map((web) => ({
-          username: web.username,
-          url: web.url,
-          email: web.email,
-          country: web.country,
-          phone: web.phone,
-        }))
-      );
-    } else {
-      setCards(registeredWebs.slice(0, 3));
-    }
-
-    const handleSidebarUpdate = () => {
-      const storedWebs: WebFormType[] = JSON.parse(
-        localStorage.getItem("registeredWebs") || "[]"
-      );
-      setCards(
-        storedWebs.slice(0, 3).map((web) => ({
-          username: web.username,
-          url: web.url,
-          email: web.email,
-          country: web.country,
-          phone: web.phone,
-        }))
-      );
+    const getWebs = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/webs");
+        const data = response.data;
+        console.log(data);
+        if (data.length > 0) {
+          setCards(
+            response.data.slice(0, 3).map((web: WebFormType) => ({
+              username: web.username,
+              url: web.url,
+              email: web.email,
+              country: web.country,
+              phone: web.phone,
+            }))
+          );
+        } else {
+          setCards(registeredWebs.slice(0, 3));
+        }
+      } catch (error) {
+        console.error("Error fetching data from API", error);
+      }
     };
 
-    window.addEventListener("updateSidebar", handleSidebarUpdate);
+    getWebs();
+
+    window.addEventListener("updateSidebar", getWebs);
     return () => {
-      window.removeEventListener("updateSidebar", handleSidebarUpdate);
+      window.removeEventListener("updateSidebar", getWebs);
     };
   }, [registeredWebs]);
 
@@ -120,7 +114,7 @@ const SideBar = () => {
           />
         </VStack>
       )}
-      {cards.length >= 3 && (
+      {cards.length > 3 && (
         <Text mt={6} ml={6} fontSize="sm" fontWeight={"bold"} color={"#F5EFFF"}>
           Hay más elementos en el listado...
         </Text>
