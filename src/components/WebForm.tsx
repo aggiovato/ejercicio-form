@@ -30,6 +30,10 @@ import {
 import { FormEvent, useState } from "react";
 import { country_prefix } from "../utils/schemas/schemas";
 
+
+/* -------------------------------------------------------------------------- */
+/*                              FORM COMPONENTS                              */
+/* -------------------------------------------------------------------------- */
 const WebForm = () => {
   const methods = useForm<WebFormType>({
     resolver: zodResolver(formSchema),
